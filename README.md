@@ -1,3 +1,25 @@
+
+
+## Run Locally
+
+### 1. Clone this repository
+
+```
+$ git clone https://github.com/quanghuybeeone/frontend-location-app.git
+$ cd frontend-location-app
+```
+
+### 2. Run the app
+
+```
+$ npm install 
+$ npm start
+```
+
+The app will run in the development mode.
+Open [http://localhost:4200](http://localhost:4200) to view it in your browser.
+
+
 # FrontendLocationApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.10.
@@ -25,3 +47,4 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+

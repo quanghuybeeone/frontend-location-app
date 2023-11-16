@@ -1,0 +1,29 @@
+<div class="container">
+    <p>admin works!</p>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Control</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let location of locations">
+            <td>{{ location.id }}</td>
+            <td>{{ location.name }}</td>
+            <td>{{ location.address }}</td>
+            <td>{{ location.types }}</td>
+            <td>{{ location.status }}</td>
+            <td>
+                <button class="btn btn-primary mx-2" *ngIf="location.status === 'pending'" (click)="controlLocation(location, 'approved')">Phê duyệt</button>
+                <button class="btn btn-danger mx-2" *ngIf="location.status === 'pending'" (click)="controlLocation(location, 'rejected')">Từ chối</button>
+            </td>
+            <!-- Thêm các cột khác tùy theo yêu cầu -->
+          </tr>
+        </tbody>
+      </table>
+</div>

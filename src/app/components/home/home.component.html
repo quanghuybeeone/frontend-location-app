@@ -1,0 +1,68 @@
+<div class="container">
+    <div class='d-flex justify-content-center'>
+        <ng-container *ngIf="apiLoaded | async">
+            <google-map height="500px" width="900px" [center]="center" [zoom]="zoom" (mapClick)="mapClicked($event)">
+                <map-marker *ngFor="let position of markerPositions;" [position]="position" (mapClick)="openInfoWindow(position)"
+                    [options]="getMarkerOptions(position.types)"></map-marker>
+                <map-marker *ngIf="selectedLocation" [position]="selectedLocation" [options]="getMarkerOptions(selectedLocation.types)"></map-marker>
+                <map-info-window #infoWindow>
+                    <div *ngIf="selectedMarkerPosition">
+                      <h5> {{ selectedMarkerPosition.name }}</h5>
+                      <p><b>Type: </b> {{ selectedMarkerPosition.types }}</p>
+                      <p><b>Address: </b> {{ selectedMarkerPosition.address }}</p>
+                      <p><b>Latitude: </b> {{ selectedMarkerPosition.lat }}</p>
+                      <p><b>Longitude: </b> {{ selectedMarkerPosition.lng }}</p>
+                    </div>
+                  </map-info-window>
+            </google-map>
+        </ng-container>
+    </div>
+    
+
+    <div class="d-flex justify-content-center mt-3" >
+        <div style="width: 500px;">
+            <h2>Form Lưu lại Vị trí</h2>
+
+            <form [formGroup]="locationForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+                <div class="form-group mb-3">
+                    <label for="name">Tên:</label>
+                    <input type="text" id="name" class="form-control" formControlName="name">
+                    <div class="invalid-feedback"
+                        *ngIf="locationForm.controls['name'].invalid && locationForm.controls['name'].touched">
+                        Tên là bắt buộc.
+                    </div>
+                </div>
+        
+                <div class="form-group mb-3">
+                    <label for="address">Địa chỉ:</label>
+                    <input type="text" id="address" class="form-control" formControlName="address">
+                    <div class="invalid-feedback"
+                        *ngIf="locationForm.controls['address']?.invalid && locationForm.controls['address']?.touched">
+                        Địa chỉ là bắt buộc.
+                    </div>
+                </div>
+        
+                <div class="form-group mb-3">
+                    <label for="type">Loại:</label>
+                    <select id="types" class="form-control" formControlName="types">
+                        <option value="">-- Lựa chọn loại --</option>
+                        <option value="hospital">Bệnh viện</option>
+                        <option value="school">Trường học</option>
+                        <option value="park">Công viên</option>
+                        <option value="supermarket">Siêu thị</option>
+                    </select>
+                    <div class="invalid-feedback"
+                        *ngIf="locationForm.controls['types'].invalid && locationForm.controls['types'].touched">
+                        Loại là bắt buộc.
+                    </div>
+                </div>
+                <div class="form-group mb-3 d-flex">
+                    <button type="submit" class="btn btn-primary" style="width: 100%;" [disabled]="locationForm.invalid">Gửi</button>
+                </div>
+                
+            </form>
+        </div>
+        
+    </div>
+    
+</div>
